@@ -217,30 +217,47 @@ func httpDo() (res string,err error) {
 	return
 }
 var  trans *http2.Transport
+var httptrans *http.Transport
 func init(){
   trans = &http2.Transport{
 	TLSClientConfig:            &tls.Config{
 		InsecureSkipVerify:true,
 	},
-}
+	}
+	httptrans = &http.Transport{
+		TLSClientConfig:&tls.Config{
+			InsecureSkipVerify:          true,
+		},
+	}
+	http2.ConfigureTransport(httptrans)
 }
 func http2Do() (res string,err error) {
+
+
+
+	//client := &http.Client{
+	//	Transport:trans,
+	//}
 	client := &http.Client{
-		Transport:trans,
+		Transport:httptrans,
 	}
-	req, err := http.NewRequest("GET", "https://192.168.3.19:8080", strings.NewReader("name=cjb"))
+	req, err := http.NewRequest("GET", "https://127.0.0.1:8080", strings.NewReader("name=cjb"))
 	if err != nil {
 		// handle error
 		return
 	}
 
+	client.CloseIdleConnections()
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Set("Cookie", "name=anny")
 
 	resp, err := client.Do(req)
+
+//	client.CloseIdleConnections()
 	if err != nil{
 		return
 	}
+
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)

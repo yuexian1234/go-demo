@@ -1,0 +1,22 @@
+{
+  "CN": "app",
+  "hosts": [
+    "127.0.0.1",
+    "192.168.177.132",
+    "app",
+    "app.ma.com"
+  ],
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "CN",
+      "ST": "Beijing",
+      "L": "Beijing",
+      "O": "k8s",
+      "OU": "System"
+    }
+  ]
+}

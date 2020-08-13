@@ -1,0 +1,17 @@
+{
+    "CN": "k8s",
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "names": [
+        {
+            "C": "CN",
+            "L": "CA",
+            "ST": "Beijing",
+            "O":"k8s",
+            "OU":"system"
+        }
+    ]
+}
+
